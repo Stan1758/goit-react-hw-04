@@ -10,9 +10,9 @@ const ImageGallery = ({ images, onImageClick }) => {
               key={img.id}
               src={img.urls.thumb}
               alt={
-                img.alt_description.length <= 28
+                img.alt_description.length <= 18
                   ? img.alt_description
-                  : img.alt_description.slice(0, 25) + "..."
+                  : undefined
               }
               className={s.image}
               onClick={() => onImageClick(img)}
