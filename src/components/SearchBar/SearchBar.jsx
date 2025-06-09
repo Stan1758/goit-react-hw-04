@@ -7,16 +7,23 @@ const SearchBar = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (query.trim() === "") {
       toast("Введи текст для пошуку зображень");
       return;
     }
-    onSubmit(query);
+
+    if (query.trim().length < 3) {
+      toast("Введіть принаймні 3 символи для пошуку");
+      return;
+    }
+
+    onSubmit(query.trim());
     setQuery("");
   };
 
   return (
-    <header>
+    <header className={s.header}>
       <form onSubmit={handleSubmit}>
         <input
           className={s.field}
@@ -28,8 +35,8 @@ const SearchBar = ({ onSubmit }) => {
           onChange={(e) => setQuery(e.target.value)}
         />
         <button type="submit">Search</button>
-        <Toaster />
       </form>
+      <Toaster position="top-right" />
     </header>
   );
 };
