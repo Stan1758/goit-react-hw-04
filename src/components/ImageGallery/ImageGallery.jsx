@@ -1,25 +1,15 @@
+import React from "react";
 import s from "./ImageGallery.module.css";
+import ImageCard from "../ImageCard/ImageCard";
 
 const ImageGallery = ({ images, onImageClick }) => {
   return (
-    <ul>
-      <li>
-        <div className={s.gallery}>
-          {images.map((img) => (
-            <img
-              key={img.id}
-              src={img.urls.thumb}
-              alt={
-                img.alt_description.length <= 18
-                  ? img.alt_description
-                  : undefined
-              }
-              className={s.image}
-              onClick={() => onImageClick(img)}
-            />
-          ))}
-        </div>
-      </li>
+    <ul className={s.gallery}>
+      {images.map((img) => (
+        <li key={img.id} className={s.item}>
+          <ImageCard image={img} onClick={onImageClick} />
+        </li>
+      ))}
     </ul>
   );
 };
